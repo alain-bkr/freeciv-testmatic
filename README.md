@@ -47,3 +47,11 @@ examples :
    ./random_tests.sh -img=0 -server=/Big/FC31/bin/freeciv-server small.serv 12_turns.serv spacerace.serv
    will create random parameter, then load the other parameter files
 ```   
+
+## Loop of N random tests
+``` 
+$ ./loop_random_tests.sh -h
+ Usage : ./loop_random_tests.sh -n=Number_of_runs [-img=Number] [-server=/my/best/freeciv-server] [paramfile1 paramfile2 ...]
+  will run random_tests.sh -n=... times, see random_test.sh -h for help about other options
+``` 
+
