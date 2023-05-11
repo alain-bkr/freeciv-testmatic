@@ -2,6 +2,9 @@
 Several scripts for doing (a lot) of random tests / rerunning / counting errors ...
 
 ## Random generator : 
+The script ```find_error.sh``` will 
+  - create a random parameter file
+  - and optionally (run the server and log everything for later analysis).
 ```
 $ ./random_tests.sh -h
 
