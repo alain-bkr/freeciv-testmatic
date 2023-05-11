@@ -58,3 +58,18 @@ $ ./loop_random_tests.sh -h
   will run random_tests.sh -n=... times, see random_test.sh -h for help about other options
 ``` 
 
+## Compute average duration of a turn for given directories.
+```
+$ ./turn_average_duration.sh
+./turn_average_duration.sh computes average turn duration of a game, each game alone inside its own dir
+Usage : ./turn_average_duration.sh DIR [DIR2] [DIR3] [DI*] ...
+```
+example :
+```
+$ ./turn_average_duration.sh loop.* ../run04_clang-15/
+loop.230511-030427/Sz6-Ai016-Lm18-230511_032250.done                           4139 turns     3 s per turn
+../run04_clang-15/loop.230507-100842.done/Sz1-Ai010-Lm47-230507_113829.done    1001 turns     7 s per turn
+loop.230511-030425/Sz5-Ai004-Lm84-230511_061643.done                            701 turns     9 s per turn
+../run04_clang-15/loop.230507-100838.done/Sz1-Ai002-Lm42-230507_135150.done    1001 turns     9 s per turn
+```
+
