@@ -3,16 +3,12 @@
 Help () {
 echo "
   Usage :
-	$0 [-option1=val1] [file1] [file2] ...
+	$0 [-opt1=val1] [-opt2=val2] [file1] [file2] ...
 
-  Without arguments, this script will 
-	- generate a .serv file with random parameters 
-	- create a directory, copy the script and run it (no human, only AI)
-	- if convert (ImageMagick) is installed, will convert .ppm to .png,
-		 and make an animated gif with maps
+  Without arguments, this script will run one random game, in its own directory
+  and create a mapimg.ppm each 10 turns 
 
   It tries many settings, not all, and not all possibilities, values may be extreme
-
 
   options : 
     -h* | --h* : help = print the current message
@@ -22,22 +18,23 @@ echo "
 	if N == 0, do not generate map images
 
     -run=N
-	if N != 0, do run the server script inside a created dir (default) 
+	if N != 0, do run the server script inside a created dir (default 1) 
 	if N == 0, do not run freeciv-serv
 
     -server=My/Favourite/Server  (default freeciv-server)
 
-  args :
+    args
 	file1 file2 ...
-	Other arguments on the command line will be considered as filenames that will be include
+	Other arguments on the command line will be considered as filenames that will be included
 	in our generated file, after all random parameters.
 	Order of files is important when they contain the same parameters, the last will overwrite the previous
-	The files must be 'clean' :
+	The files should be 'clean' :
 		# comment lines are allowed
-		'set parameter value' alone on a line, with NO leading spaces, no double spaces, no comment after.
+		set parameter value   	(alone on a line, with NO leading spaces, no double spaces, no comment after.)
+	See samples/*.serv
 
   example :
-	$0 -img=0 -server=/Big/FC31/bin/freeciv-server small.serv tenturns.serv spacerace.serv
+	$0 -img=0 -server=/Big/FC31/bin/freeciv-server ./samples/small.serv ./samples/spacerace.serv
    
 "
 }
@@ -428,8 +425,8 @@ echo " $DIR/$name has been created"
 # freeciv-server [option ...]
 #  -h, --help            Print a summary of the options
 #  -l, --log FILE        Use FILE as logfile
-#  -p, --port PORT       Listen for clients on port PORT	#  on linux 32768-60000 are open port, just pick one randomly 
-#  -r, --read FILE       Read startup script FILE		{  <---- the parameters file we are creating here
+#  -p, --port PORT       Listen for clients on port PORT	#  on linux 32768-60000 are open port, just pick one randomly, and sometimes fail if there is something there.
+#  -r, --read FILE       Read startup script FILE		<---- the parameters file we are creating here
 
 if [ "$RUN" != "0" ]; then
 (
@@ -440,7 +437,7 @@ if [ "$RUN" != "0" ]; then
 	# i want my coredump.
 	ulimit -c unlimited 2>/dev/null
 
-	LANG=en_US.UTF-8 LANGUAGE=$LANG $SERVER -p $(R 32769-59999 ) -l serv.log -r $name 2>&1 |tee  console.log
+	LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 $SERVER -p $(R 32769-59999 ) -l serv.log -r $name 2>&1 |tee  console.log
 
 	# game is finished
 	# save our profile to prevent overwrite by client
