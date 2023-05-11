@@ -6,7 +6,7 @@ echo "
 	$0 [-option1=val1] [file1] [file2] ...
 
   Without arguments, this script will 
-	- generate a .srv file with random parameters 
+	- generate a .serv file with random parameters 
 	- create a directory, copy the script and run it (no human, only AI)
 	- if convert (ImageMagick) is installed, will convert .ppm to .png,
 		 and make an animated gif with maps
@@ -37,7 +37,7 @@ echo "
 		'set parameter value' alone on a line, with NO leading spaces, no double spaces, no comment after.
 
   example :
-	$0 -img=0 -server=/Big/FC31/bin/freeciv-server small.srv tenturns.srv spacerace.srv
+	$0 -img=0 -server=/Big/FC31/bin/freeciv-server small.serv tenturns.serv spacerace.serv
    
 "
 }

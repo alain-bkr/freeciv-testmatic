@@ -1,8 +1,8 @@
 # freeciv-testmatic
 Several scripts for doing (a lot) of random tests / rerunning / counting errors ...
 
-## Random generator : 
-The script ```find_error.sh``` will 
+## Random game generator : 
+The script ```random_tests.sh``` will 
   - create a random parameter file
   - and optionally (run the server and log everything for later analysis).
 ```
@@ -51,7 +51,7 @@ examples :
    will create random parameter, then load the other parameter files
 ```   
 
-## Loop of N random tests
+## Loop of N random test games
 ``` 
 $ ./loop_random_tests.sh -h
  Usage : ./loop_random_tests.sh -n=Number_of_runs [-img=Number] [-server=/my/best/freeciv-server] [paramfile1 paramfile2 ...]
