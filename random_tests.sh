@@ -2,6 +2,9 @@
 
 Help () {
 echo "
+  Usage :
+	$0 [-option1=val1] [file1] [file2] ...
+
   Without arguments, this script will 
 	- generate a .srv file with random parameters 
 	- create a directory, copy the script and run it (no human, only AI)
@@ -10,7 +13,6 @@ echo "
 
   It tries many settings, not all, and not all possibilities, values may be extreme
 
-  Usage : $0 [-option1=val1] [file1] [file2] ...
 
   options : 
     -h* | --h* : help = print the current message
@@ -116,7 +118,7 @@ size=$(cat $INCLUDES | grep -i '^set size'|tail -1 |awk '{ print $NF }')
 
 if [ ! $size ]; then
 	size=$(R 1-7)
-	size=$(( $size * $size ))
+	#size=$(( $size * $size ))
 fi
 [[ $size -ge 10 ]] && size="$( leading_zero_fill 2 $size )"
 [[ $size -ge 100 ]] && size="$( leading_zero_fill 3 $size )"
@@ -125,7 +127,7 @@ fi
 # number of AI, will be used later for loop on AI
 aif=$(cat $INCLUDES | grep -i '^set aifill'|tail -1 |awk '{ print $NF }')
 if [ ! $aif ]; then
-	typeset -i aif=$(( $(R 1-10) + $(R 1-$size) ))
+	typeset -i aif=$(( $(R 1-10) + $(R 1-$size) + $size/2 ))
 fi
 [ $aif -gt 150 ] && aif=150
 # string with leading 0
